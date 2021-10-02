@@ -1,5 +1,3 @@
-
-
 node(){
     
     def template = load("${env.WORKSPACE}/scripts/template.groovy")
