@@ -1,26 +1,33 @@
-pipeline {
-    agent any
+
+
+node(){
+    
     def template = load("${env.WORKSPACE}/scripts/template.groovy")
-    stages {
-        stage('doing something') {
-            when { expression { 2 > 1 } } // "branch" should work too
-            stages {
-                stage ('Development') {
-                    steps {
-                        script {template()}
-                    }
-                }
-                stage ('Staging') {
-                    steps {
-                        script {template()}
-                    }
-                }
-                stage ('Production') {
-                    steps {
-                        script {template()}
-                    }
-                }
-            }
+    
+    currentBuild.result = "SUCCESS"
+    
+    try{
+        stage('checkout'){
+            checout scm
         }
+         stage ('Development') {
+             steps {
+                script {template()}
+              }
+                }
+         stage ('Staging') {
+             steps {
+                script {template()}
+                    }
+                }
+         stage ('Production') {
+             steps {
+                script {template()}
+                    }
+        
     }
+        catch (err){
+            currentBuild.result = "FALURE"
+            throw err
+        }
 }
