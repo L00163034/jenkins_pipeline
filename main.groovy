@@ -5,19 +5,19 @@ pipeline {
         stage('doing something') {
             when { expression { 2 > 1 } } // "branch" should work too
             stages {
-                stage ('a') {
+                stage ('Development') {
                     steps {
-                        script {echo "a"}
+                        script {template()}
                     }
                 }
-                stage ('b') {
+                stage ('Staging') {
                     steps {
-                        script {echo "b"}
+                        script {template()}
                     }
                 }
-                stage ('c') {
+                stage ('Production') {
                     steps {
-                        script {echo "c"}
+                        script {template()}
                     }
                 }
             }
