@@ -10,17 +10,17 @@ node(){
         }
          stage ('Development') {
              steps {
-                script {template()}
+                script {template('desarrollo')}
               }
                 }
          stage ('Staging') {
              steps {
-                script {template()}
+                script {template('stagin')}
                     }
                 }
          stage ('Production') {
              steps {
-                script {template()}
+                script {template('main')}
                     }
         
     }
